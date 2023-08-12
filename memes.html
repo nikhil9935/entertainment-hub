@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RandomMemeGenerator</title>
+    <style>
+      *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 80vh;
+}
+
+.meme img{
+    margin-top: 1rem;
+    width: 20rem;
+    height: 20rem;
+}
+button {
+        display: inline-block;
+        background-color: red;
+        padding: 20px;
+        width: 150px;
+        height:50px;
+        color: #ffffff;
+        border-radius: 5px;
+        text-align: center;
+      }
+    @media only screen and (max-width:400px){
+      .meme img{
+    margin-top: 1rem;
+    width: 20rem;
+    height: 20rem;
+}
+    }
+  </style>
+</head>
+<body>
+    <h1>Random Meme Generator</h1>
+    <div class="meme">
+        <img src="" alt="">
+    </div>
+    <button type="button" onclick="randomMemeGenerator()"" >Generate Meme</button>
+</body>
+    <script>
+        let img = document.querySelector(".meme img");
+        async function randomMemeGenerator(){
+            let res = await fetch("https://meme-api.com/gimme");    
+            console.log(res);
+            let json = await res.json();
+            console.log(json);
+            let url = json.url;
+            console.log(url);
+            img.src = url;
+
+        }
+        randomMemeGenerator()
+        
+        let timer = setInterval(randomMemeGenerator,2000);
+
+        img.addEventListener("mouseover",function(){
+            clearInterval(timer);
+        })
+
+        img.addEventListener("mouseleave",function(){
+            timer = setInterval(randomMemeGenerator,2000);
+        })
+    </script>
+    
+</html>

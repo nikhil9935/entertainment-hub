@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Load an icon library to show a hamburger menu (bars) on small screens -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+  .card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.card {
+  flex-basis: 40%;
+  height:230px;
+  margin: 10px;
+  padding: 20px;
+  background-color: #f2f2f2;
+  text-align:right;
+}
+
+.card-button {
+  display: block;
+  margin-top: 10px;
+  padding: 8px 16px;
+  
+  font-size:40px;
+  color:white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 600px) {
+  .card {
+    flex-basis: calc(50% - 20px);
+  }
+}
+
+.topnav {
+    background-color: #333;
+    overflow: hidden;
+  }
+  h1 {
+    font-size:40px;
+    text-align:center;
+    color:cyan;
+    background-color:gray;
+  }
+ 
+  /* Style the links inside the navigation bar */
+  .topnav a {
+    float: left;
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 27px;
+  }
+  #btn {
+    display: block;
+    color: red;
+    font-family: Georgia, serif;
+    font-size: 34px; 
+border:3px;
+border-style: solid;
+border-color: lightseagreen;
+background-color: rgb(0, 255, 200);
+    text-align: center;
+  }
+  
+  /* Change the color of links on hover */
+  .topnav a:hover {
+    background-color: #ddd;
+    color: black;
+  }
+  
+  /* Add an active class to highlight the current page */
+  .topnav a.active {
+    background-color: #04AA6D;
+    color: white;
+  }
+  
+  /* Hide the link that should open and close the topnav on small screens */
+  .topnav .icon {
+    display: none;
+  }
+  @media screen and (max-width: 600px) {
+  .topnav a:not(:first-child) {display: none;}
+  .topnav a.icon {
+    float: right;
+    display: block;
+  }
+}
+
+@media(max-width:820px){
+  .card-container #music{
+  background-image: url('https://th.bing.com/th/id/OIP.cwG9OIaBE7INyQ-cgeXydgHaEo?w=241&h=180&c=7&r=0&o=5&pid=1.7');
+  
+  background-size:auto 250px;
+}
+.card-container #game{
+  background-image: url('https://th.bing.com/th/id/OIP.R_KvEfLE9eizzU92NyqorAAAAA?w=271&h=174&c=7&r=0&o=5&pid=1.7');
+  background-size:auto 250px;
+  
+}
+
+.card-container #movie{
+  background-image: url('https://th.bing.com/th/id/OIP.NCXaI7u8UUCOKcxgxqmsrwHaD0?w=316&h=179&c=7&r=0&o=5&pid=1.7');
+  background-size:auto 250px;
+  
+}
+.card-container #joke{
+  background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRzgAAj1eCJgcqy4WLXQ-7T0gnhnmiIDBNwoQ&usqp=CAU');
+  background-size:auto 250px;
+  
+}
+.card-container #news{
+  background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR4Z2vkbGfwcIqMmmMvZJGqmVOkmTU6_5np1A&usqp=CAU');
+  background-size:auto 230px;
+  
+}
+
+.card-container #quiz{
+  background-image: url('https://th.bing.com/th/id/OIP.HSgva1T74_FFu4gLvHt7mgHaEK?w=283&h=180&c=7&r=0&o=5&pid=1.7');
+  background-size:auto 230px;
+  
+}
+  }
+  .card-button{
+    color:red;
+  }
+
+/* The "responsive" class is added to the topnav with JavaScript when the user clicks on the icon. This class makes the topnav look good on small screens (display the links vertically instead of horizontally) */
+@media screen and (max-width: 600px) {
+  .topnav.responsive {position: relative;}
+  .topnav.responsive a.icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .topnav.responsive a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+}
+.center{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 40%;
+  height:50%
+}
+.card-container #music{
+  background-image: url('https://th.bing.com/th/id/OIP.cwG9OIaBE7INyQ-cgeXydgHaEo?w=241&h=180&c=7&r=0&o=5&pid=1.7');
+  background-attachment: fixed;
+  background-size: cover;
+}
+.card-container #game{
+  background-image: url('https://th.bing.com/th/id/OIP.R_KvEfLE9eizzU92NyqorAAAAA?w=271&h=174&c=7&r=0&o=5&pid=1.7');
+  background-size:cover;
+  
+}
+
+.card-container #movie{
+  background-image: url('https://th.bing.com/th/id/OIP.NCXaI7u8UUCOKcxgxqmsrwHaD0?w=316&h=179&c=7&r=0&o=5&pid=1.7');
+
+  background-size: cover;
+  
+}
+.card-container #joke{
+  background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRzgAAj1eCJgcqy4WLXQ-7T0gnhnmiIDBNwoQ&usqp=CAU');
+  background-size:cover;
+  
+}
+.card-container #news{
+  background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR4Z2vkbGfwcIqMmmMvZJGqmVOkmTU6_5np1A&usqp=CAU');
+  background-size:auto 230px;
+  
+}
+
+.card-container #memes{
+  background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYk44rNYE0VGlLHPLNhF0Il6UECd2eZbQMkg&usqp=CAU');
+  background-size:cover;
+  
+}
+.card #id{
+  
+  display: inline-block;
+  vertical-align: middle;
+}
+
+  </style>
+</head>
+<body>
+<div class="topnav" id="myTopnav">
+  <a href="#service" class="active">Basic Services</a>
+  <a href="index.html">Home</a>
+  <a href="signup.html">Premium Services</a>
+  <a href="https://nikhilportfoliowebsite.netlify.app/">About Me</a>
+  <a href="contact.html">Contact</a>
+
+  
+ 
+  <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+   
+    <i class="fa fa-bars"></i>
+  </a></div>
+  <div class="card-container">
+    <a href="games.html">
+    <div class="card" id="game">
+      
+      <a href="games.html" class="card-button"><strong>Games</strong></a>
+    </div></a>
+  
+    <div class="card" id="music">
+    
+     
+     
+     
+      <a href="music.html" class="card-button"><strong>Music</strong></a>
+    </div>
+    <div class="card" id="movie">
+      
+      <a href="movie.html" id="movie"class="card-button"><strong>Movie</strong></a>
+    </div>
+    <div class="card" id="news">
+      
+      <a href="news.html" id="news"class="card-button"><strong>News</strong></a>
+    </div>
+    
+    <div class="card" id="joke">
+     
+      <a href="randomjoke.html" class="card-button"><strong>Jokes</strong></a>
+    </div>
+    
+    <div class="card" id="memes">
+      
+      <a href="memes.html" id="memes"class="card-button"><strong>Memes</strong></a>
+    </div>
+   
+  
+   
+ 
+<body>
+    <script>
+        function myFunction() {
+  var x = document.getElementById("myTopnav");
+  if (x.className === "topnav") {
+    x.className += " responsive";
+  } else {
+    x.className = "topnav";
+  }
+}
+var card = document.getElementById('game');
+card.addEventListener('click', function() {
+  // Handle the click event here
+  // This function will be executed when the card is clicked
+  // Add your code to perform the desired action, e.g., navigate to a URL
+  window.location.href = "games.html";
+});
+var card = document.getElementById('movie');
+card.addEventListener('click', function() {
+  // Handle the click event here
+  // This function will be executed when the card is clicked
+  // Add your code to perform the desired action, e.g., navigate to a URL
+  window.location.href = "movie.html";
+});
+var card = document.getElementById('joke');
+card.addEventListener('click', function() {
+  // Handle the click event here
+  // This function will be executed when the card is clicked
+  // Add your code to perform the desired action, e.g., navigate to a URL
+  window.location.href = "games.html";
+});
+var card = document.getElementById('music');
+card.addEventListener('click', function() {
+  // Handle the click event here
+  // This function will be executed when the card is clicked
+  // Add your code to perform the desired action, e.g., navigate to a URL
+  window.location.href = "music.html";
+});
+var card = document.getElementById('memes');
+card.addEventListener('click', function() {
+  // Handle the click event here
+  // This function will be executed when the card is clicked
+  // Add your code to perform the desired action, e.g., navigate to a URL
+  window.location.href = "memes.html";
+});
+var card = document.getElementById('quiz');
+card.addEventListener('click', function() {
+  // Handle the click event here
+  // This function will be executed when the card is clicked
+  // Add your code to perform the desired action, e.g., navigate to a URL
+  window.location.href = "quiz.html";
+});
+    </script>
+</body>
+</html>

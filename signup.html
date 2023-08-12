@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+    }
+  
+    .container {
+      max-width: 400px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #fff;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    }
+  
+    .container h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+  
+    .container input[type="text"],
+    .container input[type="email"],
+    .container input[type="password"] 
+    {
+      width: 100%;
+      height:30px;
+      padding: 12px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+    }
+  
+    .container button {
+      width: 100%;
+      padding: 12px;
+      background-color: #4caf50;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+    }
+  
+    .container .guest-login {
+      background-color: #999999;
+      margin-top: 10px;
+    }
+    .container .signup-login {
+      background-color: #999999;
+      margin-top: 10px;
+    }
+    @media (max-width: 600px) {
+      .container {
+        padding: 10px;
+      }
+  
+      .container input[type="text"],
+      .container input[type="email"],
+      .container input[type="password"],
+    
+      .container button {
+        padding: 8px;
+        margin-bottom: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Sign Up</h2>
+    <input type="text" id="full_name"placeholder="Name">
+    <input type="email" id="email" placeholder="Email">
+
+    <input type="password" id="password" placeholder="Password">
+    
+    <button onclick="register()"class="signup-login">New User :Sign Up</button>
+    <button onclick="window.location.href='login.html';">Old User : Go To Login</button>
+    
+    <button onclick="window.location.href='service.html';f()" class="guest-login">Login As Guest</button>
+    <button onclick="window.location.href='premiumserviceimp.html';" class="guest-login">About Premium Services</button>
+  </div>
+
+  
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script>
+
+<!-- Our script must be loaded after firebase references -->
+<script>
+ 
+  function f() {
+  var result = window.confirm("Press Ok if you want to use our basic services only else press cancel and do signup and login to access our premium services too! Go to about premium services to know the benefits of premium services.");
+  if (result == false) {
+    window.location.href='signup.html'
+  } 
+}
+
+
+
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+apiKey: "AIzaSyCBthtwdiVXyuphZBHipGcs3b5uI6wbpTs",
+authDomain: "loginsignup-284a7.firebaseapp.com",
+projectId: "loginsignup-284a7",
+storageBucket: "loginsignup-284a7.appspot.com",
+messagingSenderId: "126087400936",
+appId: "1:126087400936:web:b19e196774f94980be285d"
+};
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+// Initialize variables
+const auth = firebase.auth()
+const database = firebase.database()
+
+// Set up our register function
+function register () {
+// Get all our input fields
+email = document.getElementById('email').value
+password = document.getElementById('password').value
+full_name = document.getElementById('full_name').value
+
+
+// Validate input fields
+if (validate_email(email) == false || validate_password(password) == false) {
+alert('Please enter input fields correctly')
+return
+// Don't continue running the code
+}
+if (validate_field(full_name) == false) {
+alert('Fill Name')
+return
+}
+
+// Move on with Auth
+auth.createUserWithEmailAndPassword(email, password)
+.then(function() {
+// Declare user variable
+var user = auth.currentUser
+
+// Add this user to Firebase Database
+var database_ref = database.ref()
+
+// Create User data
+var user_data = {
+  email : email,
+  full_name : full_name,
+  
+  last_login : Date.now()
+}
+
+// Push to Firebase Database
+database_ref.child('users/' + user.uid).set(user_data)
+
+// DOne
+alert('User Created Successfully!!')
+window.location.href="login.html";
+})
+.catch(function(error) {
+// Firebase will use this to alert of its errors
+var error_code = error.code
+var error_message = error.message
+
+alert(error_message)
+})
+}
+
+// Set up our login function
+function login () {
+// Get all our input fields
+email = document.getElementById('email').value
+password = document.getElementById('password').value
+
+// Validate input fields
+if (validate_email(email) == false || validate_password(password) == false) {
+alert('Wrong Email or Password!!')
+return
+// Don't continue running the code
+}
+
+auth.signInWithEmailAndPassword(email, password)
+.then(function() {
+// Declare user variable
+var user = auth.currentUser
+
+// Add this user to Firebase Database
+var database_ref = database.ref()
+
+// Create User data
+var user_data = {
+  last_login : Date.now()
+}
+
+// Push to Firebase Database
+database_ref.child('users/' + user.uid).update(user_data)
+
+// DOne
+alert('User Logged In Successfully!!')
+
+})
+.catch(function(error) {
+// Firebase will use this to alert of its errors
+var error_code = error.code
+var error_message = error.message
+
+alert(error_message)
+})
+}
+
+
+
+
+// Validate Functions
+function validate_email(email) {
+expression = /^[^@]+@\w+(\.\w+)+\w$/
+if (expression.test(email) == true) {
+// Email is good
+return true
+} else {
+// Email is not good
+return false
+}
+}
+
+function validate_password(password) {
+// Firebase only accepts lengths greater than 6
+if (password < 6) {
+return false
+} else {
+return true
+}
+}
+
+function validate_field(field) {
+if (field == null) {
+return false
+}
+
+if (field.length <= 0) {
+return false
+} else {
+return true
+}
+}
+</script>
+  </script>
+</body>
+</html>
